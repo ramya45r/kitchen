@@ -1,0 +1,43 @@
+
+   
+    <!-- Navbar End -->
+    <div class="col-12 mx-5 mt-5">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Add New Coupon</h6>
+                <form action="/admin/AddCoupon" method="post" >
+                    <div class="mb-3 d-flex col-12">
+                        <div class="mb-3 col-6 me-3">
+                            <label for="exampleInputPassword1" class="form-label">Coupon Name</label>
+                            <input type="text" class="form-control" name="couponName" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3 col-6 ">
+                            <label for="exampleInputPassword1" class="form-label">Coupon Code</label>
+                            <input type="text" class="form-control" name="couponCode" id="exampleInputPassword1">
+                        </div>
+                    </div>
+                
+                    <div class="mb-3 d-flex col-12">
+                        <div class="mb-3 col-6 me-3">
+                            <label for="exampleInputPassword1" class="form-label">Limit</label>
+                            <input type="number" class="form-control" name="limit" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3 col-6 ">
+                            <label for="exampleInputPassword1" class="form-label">Expire Date</label>
+                            <input type="date" class="form-control" name="expirationTime" id="exampleInputPassword1">
+                        </div>
+                    </div>
+                    <div class="mb-3 d-flex col-12">
+                        <div class="mb-3 col-6 me-3">
+                            <label for="exampleInputPassword1" class="form-label">Discount</label>
+                            <input type="number" class="form-control" name="discount" id="exampleInputPassword1">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Add </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    

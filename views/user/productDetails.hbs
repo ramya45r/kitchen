@@ -1,0 +1,173 @@
+
+
+	<!-- Product Detail -->
+	<section class="sec-product-detail bg0 p-t-65 p-b-60 mt-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-lg-7 p-b-30">
+					<div class="p-l-25 p-r-30 p-lr-0-lg">
+						<div class="wrap-slick3 flex-sb flex-w">
+							<div class="wrap-slick3-dots"></div>
+							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+
+							<div class="slick3 gallery-lb">
+								<div class="item-slick3" data-thumb="/imageUpload/{{product.Images.[0].image1}}">
+									<div class="wrap-pic-w pos-relative">
+										<img src="/imageUpload/{{product.Images.[0].image1}}" alt="IMG-PRODUCT">
+
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/imageUpload/{{product.Images.[0].image1}}">
+											<i class="fa fa-expand"></i>
+										</a>
+									</div>
+								</div>
+
+								<div class="item-slick3" data-thumb="/imageUpload/{{product.Images.[0].image2}}">
+									<div class="wrap-pic-w pos-relative">
+										<img src="/imageUpload/{{product.Images.[0].image2}}" alt="IMG-PRODUCT">
+
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/imageUpload/{{product.Images.[0].image2}}">
+											<i class="fa fa-expand"></i>
+										</a>
+									</div>
+								</div>
+
+								<div class="item-slick3" data-thumb="/imageUpload/{{product.Images.[0].image3}}">
+									<div class="wrap-pic-w pos-relative">
+										<img src="/imageUpload/{{product.Images.[0].image3}}" alt="IMG-PRODUCT">
+
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/imageUpload/{{product.Images.[0].image3}}">
+											<i class="fa fa-expand"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+					
+				<div class="col-md-6 col-lg-5 p-b-30">
+					<div class="p-r-50 p-t-5 p-lr-0-lg">
+						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
+							{{product.Product_Name}}
+						</h4>
+
+						<span class="mtext-106 cl2">
+							Rs:{{product.MRP}}
+						</span>
+
+						<p class="stext-102 cl3 p-t-23">
+							{{product.Description}}
+						</p>				
+						<!--  -->
+						<div class="p-t-33">
+
+							<div class="flex-w flex-r-m p-b-10">
+								<div class="size-204 flex-w flex-m respon6-next">
+									{{!-- <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+											<i class="fs-16 zmdi zmdi-minus"></i>
+										</div>
+
+										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+
+										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+											<i class="fs-16 zmdi zmdi-plus"></i>
+										</div>
+									</div> --}}
+                                    <div>
+									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 " >
+										<a onclick="add_to_cart('{{product._id}}')" >+ add to cart</a>
+									</button>
+									<button class="flex-c-m  cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 mt-5 " >
+										<a onclick="add_to_wishlist('{{product._id}}')"> +Wishlist</a>
+									</button>
+									</div>
+									
+									
+                                    
+									{{!-- <button type="submit" onclick="add_to_cart('{{product._id}}')" class="flex-c-m stext-101 cl0 size-101 bg1 bor1  p-lr-15 trans-04 ">
+										+Add to cart
+									</button></a> --}}
+								
+								</div>
+							</div>	
+						</div>
+
+						<!--  -->
+						
+					</div>
+				</div>
+			</div>
+
+			
+			</div>
+		</div>
+
+	</section>
+
+
+
+		
+
+	<!-- Footer -->
+	<!-- Footer -->
+	<footer class="bg3 p-t-75 p-b-32" style="width:auto">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30 mx-4">
+						Categories
+					</h4>
+                    {{#each products}}
+					<ul>
+						<li class="p-b-10">
+							<div class="stext-107 cl7 hov-cl1 trans-04">
+							{{this.Category.Category}}
+							</div>
+						</li>
+					</ul>
+					{{/each}}	
+				</div>
+				<div class="col-sm-6 col-lg-3 p-b-50 ">
+					<h4 class="stext-301 cl0 p-b-30 mx-4">
+						Brands
+					</h4>
+                      {{#each product}}
+					<ul>
+						<li class="p-b-10">
+							<div class="stext-107 cl7 hov-cl1 trans-04">
+								 {{this.Brand.Brand_Name}}
+							</div>
+						</li>
+					</ul>
+					{{/each}}
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						GET IN TOUCH
+					</h4>
+
+					<p class="stext-107 cl7 size-201">
+						Any questions? Let us know in MyKitchen Center 8th floor, SDF building,Kakkancheri, Malappuram
+					</p>	
+				</div>
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Newsletter
+					</h4>
+
+					<p class="stext-107 cl7 size-201">
+						mykitchen323@gmail.com
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
+	</div>

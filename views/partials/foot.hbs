@@ -1,0 +1,54 @@
+	<!-- Footer -->
+	<footer class="bg3 p-t-75 p-b-32" style="width:auto">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30 mx-4">
+						Categories
+					</h4>
+                    {{#each products}}
+					<ul>
+						<li class="p-b-10">
+							<div class="stext-107 cl7 hov-cl1 trans-04">
+							{{this.Category.Category}}
+							</div>
+						</li>
+					</ul>
+					{{/each}}	
+				</div>
+				<div class="col-sm-6 col-lg-3 p-b-50 ">
+					<h4 class="stext-301 cl0 p-b-30 mx-4">
+						Brands
+					</h4>
+                      {{#each product}}
+					<ul>
+						<li class="p-b-10">
+							<div class="stext-107 cl7 hov-cl1 trans-04">
+								 {{this.Brand.Brand_Name}}
+							</div>
+						</li>
+					</ul>
+					{{/each}}
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						GET IN TOUCH
+					</h4>
+
+					<p class="stext-107 cl7 size-201">
+						Any questions? Let us know in MyKitchen Center 8th floor, SDF building,Kakkancheri, Malappuram
+					</p>	
+				</div>
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Newsletter
+					</h4>
+
+					<p class="stext-107 cl7 size-201">
+						mykitchen323@gmail.com
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>

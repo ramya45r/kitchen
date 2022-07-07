@@ -1,0 +1,48 @@
+<div class="container mt-5 col-xl-6">
+<form class="text-center border border-light p-5" action="/admin/AddCoupon" method="post" id="form1">
+
+    <p class="h4 mb-4">Add New Coupon</p>
+
+    <div class="form-row mb-4">
+        <div class="col">
+            <!--  name -->
+            <input type="text" id="couponName" class="form-control" placeholder="Coupon Name" name="couponName" required>
+        </div>
+    </div>
+        <div class="form-row mb-4">
+        <div class="col">
+            <!--  name -->
+            <input type="text" id="couponcode" class="form-control" placeholder="Coupon Code" name="CoupoCode"required>
+        </div>
+    </div>
+       <div class="form-row mb-4">
+        <div class="col">
+            <!--  name -->
+            <input type="number" id="Limit" class="form-control" placeholder="Limit" name="Limit" required>
+        </div>
+    </div>
+        <div class="form-row mb-4">
+        <div class="col">
+            <!--  name -->
+            <input type="date" id="ExpireDate" class="form-control" placeholder="Expire Date" name="ExpireDate" required>
+        </div>
+    </div>
+    <div class="form-row mb-4">
+        <div class="col">
+            <!--  name -->
+            <input type="number" id="Discount" class="form-control" placeholder="Discount" name="discount" required>
+        </div>
+    </div>
+   
+   
+   
+
+  
+    {{!-- <button class="btn btn-info my-4 btn-block" type="submit">Submit</button> --}}
+    <input type="submit" class="btn btn-info my-4 btn-bloc k " style="width: 100%;">
+
+   
+
+</form>
+</div>
+{{!-- validation --}}
