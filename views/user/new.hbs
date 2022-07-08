@@ -77,27 +77,19 @@ body {
               </div>
               </div>
               <div class=" container-fluid content-row  mb-4 ">
-
               <div class="row mb-4 mt-4 ">
-              {{#each Addresses.address}}
-           
+              {{#each Addresses.address}}          
   <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-    
     <div class="card rounded h-100 ">
-
       <h3></h3>
       <p style="color:black">{{this.fname}} {{this.lname}}, {{this.house}},  {{this.towncity}}, {{this.district}}, {{this.state}}, Pincode: {{this.pincode}}</p><P style="color:black">Email: {{this.email}}</P>
       <p style="color:black">Mobile: {{this.mobile}}</p>
-
       <button class="btn btn-primary" onclick="autofill('{{this.fname}}','{{this.mobile}}','{{this.email}}','{{this.house}}','{{this.towncity}}','{{this.district}}','{{this.state}}','{{this.pincode}}')">use this Address</button>
-
     </div>
-    
   </div>
     {{/each}}
     </div>
     </div>
-
             <div class="billing_details ">
               <div class="row mt-3">
                 <div class="col-lg-8">

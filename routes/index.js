@@ -438,8 +438,8 @@ router.get("/orderTracking/:id", async (req, res) => {
 });
 router.get('/about',  async function (req, res, next) {
   let user = req.session.user;
-  let cartcount = await userHelpers.getCartCount(req.session.user._id);
-  let wishlistCount=await userHelpers.getWishlistcount(req.session.user._id);
+  let cartcount = await userHelpers.getCartCount(req.session.user);
+  let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
   res.render('user/about',{cartcount,wishlistCount,user});
 });
 router.get('/contact', async function (req, res, next) {

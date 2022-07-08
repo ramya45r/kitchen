@@ -6,28 +6,19 @@
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
 					<div class="left-top-bar text-dark">
-						Free shipping for standard order over $100
 					</div>
-
 					<div class="right-top-bar flex-w h-full">
-						<a href="" class="flex-c-m trans-04 p-lr-25 text-dark">
-							Help & FAQs
-						</a>
+						
 						{{#if user}}
 							<a href="/myprofile" id="logPopup" class="flex-c-m trans-04 p-lr-25 text-warning"> {{user.name}}</a>
 						<a href="/logout" class="flex-c-m trans-04 p-lr-25 text-warning">
 							Logout
 						</a>
-						
-
 						{{else}}
 						<a href="/login" id="logPopup" class="flex-c-m trans-04 p-lr-25 text-warning">
 							My Account
 						</a>
-	
 						{{!--/ popup Model  --}}
-						
-						
 						{{/if}}
 					</div>
 				</div>
@@ -122,34 +113,29 @@
 			<ul class="topbar-mobile">
 				<li>
 					<div class="left-top-bar">
-						Free shipping for standard order over $100
+						
 					</div>
 				</li>
-
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							Help & FAQs
+						{{#if user}}
+							<a href="/myprofile" id="logPopup" class="flex-c-m trans-04 p-lr-25 text-warning"> {{user.name}}</a>
+						<a href="/logout" class="flex-c-m trans-04 p-lr-25 text-warning">
+							Logout
 						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
+						{{else}}
+						<a href="/login" id="logPopup" class="flex-c-m trans-04 p-lr-25 text-warning">
 							My Account
 						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							EN
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							USD
-						</a>
+						{{!--/ popup Model  --}}
+						{{/if}}
 					</div>
 				</li>
 			</ul>
 
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.html">Home</a>
+					<a href="/">Home</a>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
@@ -159,11 +145,11 @@
 					<a href="/product">Shop</a>
 				</li>
 				<li>
-					<a href="about.html">About</a>
+					<a href="/about">About</a>
 				</li>
 
 				<li>
-					<a href="contact.html">Contact</a>
+					<a href="/contact">Contact</a>
 				</li>
 			</ul>
 		</div>
