@@ -501,9 +501,9 @@ router.get("/product", async (req, res) => {
   let user = req.session.user;
   let cartcount = await userHelpers.getCartCount(req.session.user);
   let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
-  
+  const products = await productHelpers.getProducts();
   const product=await productHelpers.getProduct();
-  res.render("user/products", { product,user,cartcount,wishlistCount });
+  res.render("user/products", { product,user,cartcount,wishlistCount,products});
 });
 //-----------------------------------------User-Profile-----------------------------------------------------//
 
