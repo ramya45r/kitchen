@@ -196,7 +196,6 @@ router.post("/RPass", async (req, res) => {
   }
 });
 /* GET productDetails. */
-
 router.get("/productDetails/:id",async(req,res) => {
   let user = req.session.user;
   if(user){
