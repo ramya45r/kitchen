@@ -197,19 +197,19 @@ router.post("/RPass", async (req, res) => {
 });
 /* GET productDetails. */
 router.get("/productDetails/:id",async(req,res) => {
-  let user = req.session.user;
-  if(user){
-  let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
-  let cartItems = await userHelpers.getCartItems(req.session.user);
-  let cartcount = await userHelpers.getCartCount(req.session.user);
-  let product = await userHelpers.getSingleProduct(req.params.id)
-      res.render("user/productDetails", { product, user,cartItems,cartcount,wishlistCount });
+  // let user = req.session.user;
+  // if(user){
+  // let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
+  // let cartItems = await userHelpers.getCartItems(req.session.user);
+  // let cartcount = await userHelpers.getCartCount(req.session.user);
+   let product = await userHelpers.getSingleProduct(req.params.id)
+      res.render("user/productDetails", { product});
   }
-  else{
-    let product = await userHelpers.getSingleProduct(req.params.id);
-    res.render("user/productDetails", { product}); 
-    }  
-  }
+  // else{
+  //   let product = await userHelpers.getSingleProduct(req.params.id);
+  //   res.render("user/productDetails", { product}); 
+  //   }  
+  // }
 );
  
 //---------------------------------------Add-to cart-------------------------------------------------------------------//
