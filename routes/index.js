@@ -450,26 +450,6 @@ router.get('/about',  async (req, res, next)=> {
   res.render('user/about');
   }
 });
-// router.get('/contact', async (req, res, next)=> {
-//   let user = req.session.user;
-//   if(user){
-//   let cartcount = await userHelpers.getCartCount(req.session.user);
-//   let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
-//   res.render('user/contact',{cartcount,wishlistCount,user});
-// }
-// else{
-// res.render('user/contact');
-// }
-// });
-// router.get('/contact',function(req,res,next){
-// res.render('user/contact')
-
-// });
-// router.get("/contact", async (req, res) => {
-//   let user = req.session.user;
-//   let cartcount = await userHelpers.getCartCount(req.session.user);
-//   let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
-  
 router.get("/contact", async (req, res) => {
   res.render("user/contact");
 });
