@@ -452,15 +452,15 @@ router.get('/about',  async (req, res, next)=> {
   }
 });
 router.get('/contact', async (req, res, next)=> {
-  let user = req.session.user;
-  if(user){
-  let cartcount = await userHelpers.getCartCount(req.session.user);
-  let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
-  res.render('user/contact',{cartcount,wishlistCount,user});
-}
-else{
+//   let user = req.session.user;
+//   if(user){
+//   let cartcount = await userHelpers.getCartCount(req.session.user);
+//   let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
+//   res.render('user/contact',{cartcount,wishlistCount,user});
+// }
+// else{
 res.render('user/contact');
-}
+// }
 });
 
 
