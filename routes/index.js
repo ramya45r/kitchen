@@ -197,7 +197,7 @@ router.post("/RPass", async (req, res) => {
 });
 /* GET productDetails. */
 router.get("/productDetails/:id",async(req,res) => {
- 
+  let user = req.session.user;
   if(user){
   let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
   let cartItems = await userHelpers.getCartItems(req.session.user);
