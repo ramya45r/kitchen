@@ -557,11 +557,6 @@ router.post("/Editproflie", (req, res) => {
 });
 
 
-router.get("/model",(req, res) => {
- 
-  res.render("user/model");
-});
-
 router.get('/viewOrderProducts/:id',(req,res)=>{
   console.log(req.params.id);
   let user = req.session.user;
