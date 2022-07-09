@@ -462,11 +462,18 @@ router.get('/about',  async (req, res, next)=> {
 // res.render('user/contact');
 // }
 // });
-router.get('/contact',function(req,res,next){
-res.render('user/contact')
+// router.get('/contact',function(req,res,next){
+// res.render('user/contact')
 
+// });
+router.get("/contact", async (req, res) => {
+  let user = req.session.user;
+  let cartcount = await userHelpers.getCartCount(req.session.user);
+  let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
+  
+  
+  res.render("user/contact", {user,cartcount,wishlistCount });
 });
-
 
 // router.get("/add-Towishlist/:id", (req, res, next) => {
 //   console.log(req.params.id);
