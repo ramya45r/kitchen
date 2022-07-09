@@ -451,7 +451,7 @@ router.get('/about',  async (req, res, next)=> {
   res.render('user/about');
   }
 });
-router.get('/contact', async (req, res, next)=> {
+// router.get('/contact', async (req, res, next)=> {
 //   let user = req.session.user;
 //   if(user){
 //   let cartcount = await userHelpers.getCartCount(req.session.user);
@@ -459,8 +459,12 @@ router.get('/contact', async (req, res, next)=> {
 //   res.render('user/contact',{cartcount,wishlistCount,user});
 // }
 // else{
-res.render('user/contact');
+// res.render('user/contact');
 // }
+// });
+router.get('/contact',function(req,res,next){
+res.render('user/contact')
+
 });
 
 
