@@ -3,7 +3,38 @@ var router = express.Router();
 const category = require("../models/category");
 const productHelpers = require("../helpers/product-helpers");
 const Storage = require("../Middleware/multer");
-const moment=require('moment')
+const moment=require('moment');
+
+// const verifyadmin = (req, res, next) => {
+//   if (req.session.admin) {
+//     next();
+//   } else {
+//     res.redirect("/admin");
+//   }
+// };
+
+// router.get("/", function (req, res, next) {
+
+//   res.render("admin/adminLogin", {
+//     err: req.session.adminloggErr,
+//     admin,
+//     layout: false,
+//   });
+//   req.session.adminloggErr = null;
+// });
+// router.post("/adminLogin", (req, res) => {
+//   productHelpers
+//     .doadminlogin(req.body)
+//     .then((response) => {
+//       req.session.adminlogin = true;
+//       req.session.admin = response.admin;
+//       res.redirect("/admin/admin-home");
+//     })
+//     .catch((err) => {
+//       req.session.adminloggErr = err.msg;
+//       res.redirect("/admin");
+//     });
+// });
 // /* GET users listing. */
 // router.get("/", function (req, res, next) {
 //   res.render("admin/admin-home", { layout: "adminLayout" });
@@ -33,33 +64,8 @@ const moment=require('moment')
 // router.get("/addcategory",function(req, res, next){
 //     res.render("admin/addcategory",{layout:'adminLayout'})
 // })
-router.get("/", function (req, res) {
-  res.header(
-    "Cache-control",
-    "no-cache,private, no-store, must-revalidate,max-stale=0,post-check=0,pre-check=0"
-  );
-  if (req.session.adminLoggedIn) {
-    res.redirect("/admin/admin-home", { admin: true });
-  } else {
-    res.render("admin/admin-login", {
-      layout: false,
-      adminLoginErr: req.session.adminLoginErr,
-    });
-  }
-});
-router.post("/admin-login", (req, res) => {
-  userHelpers.doAdminLogin(req.body).then((response) => {
-    console.log(response);
-    if (response.status) {
-      req.session.adminDetails = response.admin;
-      req.session.adminLoggedIn = true;
-      res.redirect("/admin/admin-home");
-    } else {
-      req.session.adminLoginErr = "Invalid Username or Password";
-      res.redirect("/admin");
-    }
-  });
-});
+// 
+
 router.get("/admin-home", (req, res) => {
   res.header(
     "Cache-control",

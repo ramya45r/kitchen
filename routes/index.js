@@ -195,19 +195,24 @@ router.post("/RPass", async (req, res) => {
     res.redirect("/newPassword");
   }
 });
-
 /* GET productDetails. */
 
 router.get("/productDetails/:id",async(req,res) => {
   let user = req.session.user;
+  if(user){
   let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
-  let product = await userHelpers.getSingleProduct(req.params.id)
   let cartItems = await userHelpers.getCartItems(req.session.user);
   let cartcount = await userHelpers.getCartCount(req.session.user);
-     res.render("user/productDetails", { product, user,cartItems,cartcount,wishlistCount });
-  
- });
-
+  let product = await userHelpers.getSingleProduct(req.params.id)
+      res.render("user/productDetails", { product, user,cartItems,cartcount,wishlistCount });
+  }
+  else{
+    let product = await userHelpers.getSingleProduct(req.params.id);
+    res.render("user/productDetails", { product}); 
+    }  
+  }
+);
+ 
 //---------------------------------------Add-to cart-------------------------------------------------------------------//
 router.get("/add-tocart/:id",verifyLogin, (req, res) => {
   console.log('000000000000000000000000000000000000000000000')
@@ -292,9 +297,9 @@ router.post("/removeProductFromCart", (req, res, next) => {
 
 router.get("/checkout", async (req, res) => {
   let user = req.session.user;
-  let cartcount = await userHelpers.getCartCount(req.session.user._id);
-  let  wishlistCount=await userHelpers.getWishlistcount(req.session.user._id);
-  const cartItems = await userHelpers.getCartItems(req.session.user._id);
+  let cartcount = await userHelpers.getCartCount(req.session.user);
+  let  wishlistCount=await userHelpers.getWishlistcount(req.session.user);
+  const cartItems = await userHelpers.getCartItems(req.session.user);
   const subTotal = await userHelpers.subTotal(req.session.user._id);
   const totalAmount = await userHelpers.totalAmount(req.session.user._id);
   const netTotal = totalAmount.grandTotal.total;
@@ -396,7 +401,6 @@ router.get("/viewOrderDetails", async (req, res) => {
     res.render("user/orderSuccess", { ordered_on,user, orderProducts, cartcount,wishlistCount});
   });
 });
-
 router.get("/orderPage", async (req, res) => {
   let user = req.session.user;
   console.log(user);
@@ -436,17 +440,27 @@ router.get("/orderTracking/:id", async (req, res) => {
     res.render("user/orderTracking",{user,orderProducts});
   });
 });
-router.get('/about',  async function (req, res, next) {
+router.get('/about',  async (req, res, next)=> {
   let user = req.session.user;
-  let cartcount = await userHelpers.getCartCount(req.session.user);
-  let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
+  if(user){
+  let cartcount = await userHelpers.getCartCount(req.session.user_id);
+  let wishlistCount=await userHelpers.getWishlistcount(req.session.user_id);
   res.render('user/about',{cartcount,wishlistCount,user});
+  }
+  else{
+  res.render('user/about');
+  }
 });
-router.get('/contact', async function (req, res, next) {
+router.get('/contact', async (req, res, next)=> {
   let user = req.session.user;
+  if(user){
   let cartcount = await userHelpers.getCartCount(req.session.user);
   let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
   res.render('user/contact',{cartcount,wishlistCount,user});
+}
+else{
+res.render('user/contact');
+}
 });
 
 
@@ -485,8 +499,8 @@ router.get("/product", async (req, res) => {
 router.get('/myprofile',  async (req, res)=> {
   
   const user = await userHelpers.userprofile(req.session.user);
-  let cartcount = await userHelpers.getCartCount(req.session.user._id);
-  let wishlistCount=await userHelpers.getWishlistcount(req.session.user._id);
+  let cartcount = await userHelpers.getCartCount(req.session.user);
+  let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
   res.render('user/profile/myprofile',{user,cartcount,wishlistCount});
 });
 
@@ -494,8 +508,8 @@ router.get('/myprofile',  async (req, res)=> {
 
 router.get('/edit-profile',  async(req, res, next) =>{
   let user = req.session.user;
-  let cartcount = await userHelpers.getCartCount(req.session.user._id);
-  let wishlistCount=await userHelpers.getWishlistcount(req.session.user._id);
+  let cartcount = await userHelpers.getCartCount(req.session.user);
+  let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
   res.render('user/profile/edit-profile',{user,cartcount,wishlistCount});
 });
 //----------------------------------------Address-page------------------------------------------------------//
@@ -516,9 +530,13 @@ router.post("/addAddress/:id", (req, res) => {
 
 router.get("/addAddress", async(req, res) => {
   let user = req.session.user;
-  let cartcount = await userHelpers.getCartCount(req.session.user);
-  let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
-  res.render("user/profile/addAddress", { user,cartcount,wishlistCount });
+  if(user){
+    let cartcount = await userHelpers.getCartCount(req.session.user);
+    let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
+     res.render("user/profile/addAddress", { user,cartcount,wishlistCount });
+  }else{
+    res.render("/login");
+  }
 });
 
 router.get("/editAddress/:id", async(req, res) => {
@@ -542,12 +560,7 @@ router.get("/deleteAddress/:id", (req, res) => {
   });
 });
 
-
-
-
-
 router.post("/Editproflie", (req, res) => {
-
   userHelpers.Editproflie(req.body, req.session.user._id).then(() => {
     res.redirect("/myprofile");
   });
@@ -558,11 +571,6 @@ router.get("/model",(req, res) => {
  
   res.render("user/model");
 });
-
-
-
-
-
 
 router.get('/viewOrderProducts/:id',(req,res)=>{
   console.log(req.params.id);
@@ -600,83 +608,18 @@ router.get('/viewOrderProducts/:id',(req,res)=>{
         res.json({ status: true }); 
       });
   });  
-  
-  // router.post("/searchResults", (req, res) => {
-  //   let key = req.body.key;
-  //   console.log(key+"dfdgdsgdsgsgsd");
-  //  userHelpers.getSearchProducts(key).then((response)=>{
-  
-  //      console.log(response+"fsadf");
-  // const serchProducts=response
-  //   res.render("users/pro",{serchProducts})
-  //   });
-   
-  // });
-  //search product
-// router.post('/search', async (req, res) => {
-//   let searchText = req.body['search_name'];
-//   console.log(searchText + "ooooooooooooooooooo");
-//   try {
-//     let products = await userHelpers.getallProductdetails()
-
-//     if (searchText) {
-//       let userproducts = products.filter((u) => u.brandnames.brandname.includes(searchText));
-//       let category = await adminHelpers.getCategory()
-//       console.log(userproducts, "products");
-//       res.render('/user/search', { userproducts, category })
-
-//     }
-
-//   } catch (err) {
-//     console.log(err);
-//   }
-
-// })
-
-// router.get('/filterPage', async (req, res) => {
-//   // let cartCount = ''
-//   // let wishListCount=''
-//   // const user = req.session.user
-//   // if (user) {
-//   //   cartCount = await userHelper.getCartCount(req.session.user._id)
-//   //   wishListCount = await userHelper.getWishListCount(req.session.user._id)
-//   // }
-//   let category = await adminHelper.getAllCategory()
-//   let brands = await adminHelper.getAllBrands()
-//   res.render('user/Shop', { cartCount, user, category, brands, filterResult })
-// })
-// router.get('/filterbrands/:id', (req, res) => {
-//   const brandFilter = req.params.id
-//   userHelper.filterBrands(brandFilter).then((result) => {
-//     filterResult = result
-//     res.redirect("/filterPage")
-//   })
-// })
-router.post("/searchResult", (req, res) => {
-  let key = req.body.key;
-  console.log(key+"dfdgdsgdsgsgsd");
- userHelpers.getSearchProducts(key).then((response)=>{
-  serchProducts=response
-  console.log("aaaaaaaaaaaaaaaaaaaa");
-  console.log(serchProducts);
-  res.redirect("/searchResults")
+  router.post("/searchResult", (req, res) => {
+    let key = req.body.key;
+    userHelpers.getSearchProducts(key).then((response)=>{
+    filterResult=response
+    console.log("aaaaaaaaa");
+    console.log(filterResult);
+    res.redirect("/searchResults")
+    }); 
   });
+  router.get("/searchResults",(req, res) => {
  
-});
-router.get('/searchResults',(req,res)=>{
-
-  res.render("user/search",{serchProducts})
-})
-
-
-
-
-
-
-
-// // router.get('/search', function (req, res, next) {
+    res.render("user/search",{filterResult});
+  });
   
-//   res.render("user/search");
-// });
-
 module.exports = router;

@@ -5,11 +5,10 @@ const subcategories = require("../models/subCategory");
 //const productDatas = require("../models/productData");
 const orderModel = require('../models/order')
 const userData = require("../models/user");
-const wishlistModel=require("../models/wishlist");
+
 const couponmodel=require("../models/Coupon");
 const Carouselmodel=require("../models/Carousel")
 const moment=require('moment')
-
 module.exports = {
   doadminlogin: (adminDataa) => {
     console.log(adminDataa);

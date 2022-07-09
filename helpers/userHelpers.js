@@ -463,6 +463,9 @@ placeOrder:(order,cartItem,grandTotal,deliveryCharge,netTotal,user)=>{
      Total:netTotal,
      ShippingCharge:deliveryCharge,
      grandTotal:grandTotal,
+     coupondiscountedPrice:order.discountedPrice,
+     couponPercent:order.discoAmountpercentage,
+     couponName:order.couponName,
      payment_status:status, 
      paymentMethod:order.paymentMethod,
      ordered_on:new Date(),
@@ -839,34 +842,25 @@ getCarousel:()=>{
       })  
     })
     }, 
-    // getSearchProducts: (key) => {
-    //   return new Promise(async (resolve, reject) => {
-    //     let serchProducts = await productData
-    //       .find({
-    //         $or: [
-    //           { Product_Name: { $regex: new RegExp("^" + key + ".*", "i") } },
-    //           { Brand_Name: { $regex: new RegExp("^" + key + ".*", "i") } },
-              
-    //         ],
-    //       })
-    //       .lean();
-    //     resolve(serchProducts);
-    //   });
-    // },
-    getSearchProducts:(key)=>{
-        
-      return new Promise(async(resolve,reject)=>{
-        const serchProducts=await productData.find({
-          $or: [
-            { Product_Name: { $regex: new RegExp("^" + key + ".*", "i") } },
-            // { Brand: { $regex: new RegExp("^" + key + ".*", "i") } },
-            // { Category: { $regex: new RegExp("^" + key + ".*", "i") } },
-          ],
-        }).lean()
-      //   console.log("====================");
-      //   console.log(products);
-          resolve(serchProducts)
-      })
+    getSearchProducts: (key) => {
+      console.log(key +"11111111111111111");
+      // try{
+        return new Promise(async (resolve, reject) => {
+        let products = await productData
+          .find({
+            $or: [
+              {Product_Name: { $regex: new RegExp("^" + key + ".*", "i") } },  
+            ],
+          })
+          .lean();
+          console.log(products);
+        resolve(products);
+      });
+
+      // }catch(error){
+      //   console.error(error);
+      // }
+      
     },
     getOneAddres:(user,addressId)=>{
       let id = mongoose.Types.ObjectId(user);
