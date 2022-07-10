@@ -537,7 +537,6 @@ router.get("/addAddress", async(req, res) => {
      res.render("user/profile/addAddress", { user,cartcount,wishlistCount });
 
 });
-
 router.get("/editAddress/:id", async(req, res) => {
   let user = req.session.user;
   let cartcount = await userHelpers.getCartCount(req.session.user);
