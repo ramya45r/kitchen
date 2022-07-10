@@ -518,7 +518,7 @@ router.post("/addAddress/:id", (req, res) => {
 });
 //--------------------------------------Add-address-----------------------------------------------------------//
 
-router.get("/addAddress", async(req, res) => {
+router.get("/addAddress1", async(req, res) => {
   let user = req.session.user;
   if(user){
     let cartcount = await userHelpers.getCartCount(req.session.user);
