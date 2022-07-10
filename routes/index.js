@@ -441,17 +441,29 @@ router.get("/orderTracking/:id", async (req, res) => {
 });
 router.get('/about',  async (req, res, next)=> {
   let user = req.session.user;
+  const products = await productHelpers.getProducts();
+  const product=await productHelpers.getProduct();
   if(user){
   let cartcount = await userHelpers.getCartCount(req.session.user_id);
   let wishlistCount=await userHelpers.getWishlistcount(req.session.user_id);
-  res.render('user/about',{cartcount,wishlistCount,user});
+  res.render('user/about',{cartcount,wishlistCount,user,products,product});
   }
   else{
-  res.render('user/about');
+  res.render('user/about',{products,product});
   }
 });
 router.get("/contact", async (req, res) => {
-  res.render("user/contact");
+  let user = req.session.user;
+  const products = await productHelpers.getProducts();
+  const product=await productHelpers.getProduct();
+  if(user){
+  let cartcount = await userHelpers.getCartCount(req.session.user_id);
+  let wishlistCount=await userHelpers.getWishlistcount(req.session.user_id);
+  res.render('user/contact',{cartcount,wishlistCount,user,products,product});
+  }
+  else{
+  res.render('user/contact',{products,product});
+  }
 });
 
 // router.get("/add-Towishlist/:id", (req, res, next) => {
