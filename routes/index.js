@@ -530,7 +530,7 @@ router.post("/addAddress/:id", (req, res) => {
 });
 //--------------------------------------Add-address-----------------------------------------------------------//
 
-router.get("/addAddress", async(req, res) => {
+router.get("/addAdd", async(req, res) => {
      let user = req.session.user;
     let cartcount = await userHelpers.getCartCount(req.session.user);
     let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
