@@ -4,44 +4,78 @@ const categories = require("../models/category");
 const subcategories = require("../models/subCategory");
 //const productDatas = require("../models/productData");
 const orderModel = require('../models/order')
+const bcrypt=require("bcrypt");
 const userData = require("../models/user");
-
+const adminData =require("../models/adminData")
 const couponmodel=require("../models/Coupon");
 const Carouselmodel=require("../models/Carousel")
 const moment=require('moment')
 module.exports = {
-  doadminlogin: (adminDataa) => {
-    console.log(adminDataa);
+  // doadminlogin: (adminDataa) => {
+  //   console.log(adminDataa);
+  //   return new Promise(async (resolve, reject) => {
+  //     let response = {};
+  //     const admin = await adminDataModel.findOne({ email: adminDataa.email });
+
+  //     if (admin) {
+  //       console.log("admin Email true");
+  //       bcrypt.compare(adminDataa.password, admin.password).then((result) => {
+  //         if (result) {
+  //           console.log("admin login true");
+  //           response.admin = admin;
+  //           response.status = true;
+  //           resolve(response);
+  //         } else {
+  //           console.log("login error");
+  //           reject({
+  //             status: false,
+  //             msg: "Your username or password is incorrect",
+  //           });
+  //         }
+  //       });
+  //     } else {
+  //       console.log("Login Failed");
+  //       reject({
+  //         status: false,
+  //         msg: "Your username or password is incorrect",
+  //       });
+  //     }
+  //   });
+  // },
+  doLogin: (adminData1) => {
+    console.log(adminData1);
     return new Promise(async (resolve, reject) => {
+      let loginStatus = false;
       let response = {};
-      const admin = await adminDataModel.findOne({ email: adminDataa.email });
+      let admin = await adminData.findOne({ email: adminData1.email });
+      // let admin= await adminData.findOne({email:userDataaa.email})
+      // console.log(userData);
+       //console.log(user.email);
 
       if (admin) {
-        console.log("admin Email true");
-        bcrypt.compare(adminDataa.password, admin.password).then((result) => {
-          if (result) {
-            console.log("admin login true");
-            response.admin = admin;
+        
+        console.log(admin);
+        
+        console.log(adminData1.password,'11111111111111111');
+        console.log(admin.password);
+        bcrypt.compare(adminData1.password, admin.password).then((status) => {
+          if (status) {
+            console.log("Login Success!");
+            response.admin =admin;
             response.status = true;
             resolve(response);
+            console.log(response + "1234");
           } else {
-            console.log("login error");
-            reject({
-              status: false,
-              msg: "Your username or password is incorrect",
-            });
+            console.log("Login Failed");
+            reject({ status: false, msg: "Password not matching!" });
           }
-        });
+        })
       } else {
         console.log("Login Failed");
-        reject({
-          status: false,
-          msg: "Your username or password is incorrect",
-        });
+        reject({ status: false, msg: "Email not registered, please sign up!" });
       }
     });
   },
-
 
 
 
@@ -198,6 +232,12 @@ module.exports = {
     getProduct: (product) => {
       return new Promise(async (resolve, reject) => {
         const allProducts = await productData.find({pro_Id:product}).populate('Category').populate('Sub_category').populate('Brand').sort({ _id: -1 }).limit(4).lean()
+        resolve(allProducts);
+      });
+    },
+    getProduct: (product1) => {
+      return new Promise(async (resolve, reject) => {
+        const allProducts = await productData.find({pro_Id:product1}).populate('Category').populate('Sub_category').populate('Brand').sort({ _id: -1 }).limit(4).lean()
         resolve(allProducts);
       });
     },

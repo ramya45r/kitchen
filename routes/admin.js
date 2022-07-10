@@ -5,13 +5,69 @@ const productHelpers = require("../helpers/product-helpers");
 const Storage = require("../Middleware/multer");
 const moment=require('moment');
 
-// const verifyadmin = (req, res, next) => {
-//   if (req.session.admin) {
-//     next();
+const verifyLogin=(req,res,next)=>{
+  if(req.session.adminLogged){
+      next()
+  }else{
+      res.redirect("/admin")
+  }
+}
+// router.get("/", function (req, res, next) {
+//   if (req.session.adminLogged) {
+//     res.redirect("/admin/adminPage")
 //   } else {
-//     res.redirect("/admin");
+//     res.render("admin/adminLogin", { loginPage: true,layout:false,loggErr: req.session.loggedInError, })
 //   }
-// };
+//   req.session.loggedInError = null;
+// });
+// router.get("/adminPage", function (req, res, next) {
+//   console.log("444444444444444444444444");
+//   if (req.session.adminLogged) {
+//          res.redirect("/admin/admin-home", { layout: 'adminLayout' })
+//      }
+
+// });
+
+
+// router.post("/data", (req, res, next) => {
+//   console.log(req.body);
+//   productHelpers.doLogin(req.body).then((response) => {
+//       console.log("inside doLogin");
+//       if (response.admin) {
+//           req.session.adminLogged = true;
+//           req.session.admin = response.admin;
+//           res.redirect("/admin/admin-home")
+//       }
+//   })
+//       .catch((err) => {
+//           req.session.loggedInError = err.msg;
+//           res.redirect("/admin");
+
+//       });
+// });
+
+// router.get("/logout",verifyLogin, (req, res, next) => {
+//   req.session.destroy(()=>{
+//       res.redirect("/admin")
+//   })
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // router.get("/", function (req, res, next) {
 
@@ -36,14 +92,12 @@ const moment=require('moment');
 //     });
 // });
 // /* GET users listing. */
-// router.get("/", function (req, res, next) {
-//   res.render("admin/admin-home", { layout: "adminLayout" });
-// });
+
 
  router.get("/", function (req, res, next) {
    res.render("admin/adminLogin", { layout:false });
  });
- router.post("/adminLogin", function (req, res, next) {
+ router.post("/data", function (req, res, next) {
   res.redirect("/admin/admin-home");
 });
 

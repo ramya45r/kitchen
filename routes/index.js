@@ -198,16 +198,18 @@ router.post("/RPass", async (req, res) => {
 /* GET productDetails. */
 router.get("/productDetails/:id",async(req,res) => {
   let user = req.session.user;
+  const products = await productHelpers.getProducts();
+  const product1=await productHelpers.getProduct();
   if(user){
   let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
   let cartItems = await userHelpers.getCartItems(req.session.user);
   let cartcount = await userHelpers.getCartCount(req.session.user);
    let product = await userHelpers.getSingleProduct(req.params.id)
-      res.render("user/productDetails", { product,wishlistCount,cartItems,cartcount,user});
+      res.render("user/productDetails", { product,wishlistCount,cartItems,cartcount,user,products,product1});
   }
   else{
     let product = await userHelpers.getSingleProduct(req.params.id);
-    res.render("user/productDetails", { product}); 
+    res.render("user/productDetails", { product, products,product1}); 
     }  
   }
 );
