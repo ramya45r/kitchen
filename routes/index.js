@@ -518,15 +518,12 @@ router.post("/addAddress/:id", (req, res) => {
 });
 //--------------------------------------Add-address-----------------------------------------------------------//
 
-router.get("/addAddress1", async(req, res) => {
-  let user = req.session.user;
-  if(user){
+router.get("/addAddress", async(req, res) => {
+     let user = req.session.user;
     let cartcount = await userHelpers.getCartCount(req.session.user);
     let wishlistCount=await userHelpers.getWishlistcount(req.session.user);
      res.render("user/profile/addAddress", { user,cartcount,wishlistCount });
-  }else{
-    res.render("/login");
-  }
+
 });
 
 router.get("/editAddress/:id", async(req, res) => {
